@@ -8,6 +8,7 @@ class NewTransaction extends StatefulWidget {
   NewTransaction(this.addTx);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NewTransactionState createState() => _NewTransactionState();
 }
 

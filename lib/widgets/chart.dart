@@ -7,7 +7,7 @@ import '../models/transaction.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  // ignore: use_key_in_widget_constructors
+  // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
   Chart(this.recentTransactions);
 
   List<Map<String, Object>> get groupedTransactionValues {

@@ -7,6 +7,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
+  // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
   TransactionList(this.transactions, this.deleteTx);
 
   @override
@@ -56,7 +57,7 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),
                   ),
-                  trailing: MediaQuery.of(context).size.width > 360
+                  trailing: MediaQuery.of(context).size.width > 460
                       ? FlatButton.icon(
                           icon: Icon(Icons.delete),
                           label: Text('DELETE'),
