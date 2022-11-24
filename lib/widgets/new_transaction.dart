@@ -9,9 +9,11 @@ import '../widgets/adaptive_flat_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function addTx;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   NewTransaction(this.addTx);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NewTransactionState createState() => _NewTransactionState();
 }
 
@@ -54,6 +56,7 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
+    // ignore: avoid_print
     print('...');
   }
 
@@ -87,7 +90,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 onSubmitted: (_) => _submitData(),
                 // onChanged: (val) => amountInput = val,
               ),
-              Container(
+              SizedBox(
                 height: 70,
                 child: Row(
                   children: <Widget>[
@@ -103,6 +106,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 ),
               ),
               RaisedButton(
+                // ignore: sort_child_properties_last
                 child: Text('Add Transaction'),
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,

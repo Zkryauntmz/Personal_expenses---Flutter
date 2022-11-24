@@ -7,6 +7,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   TransactionList(this.transactions, this.deleteTx);
 
   @override
@@ -17,12 +18,12 @@ class TransactionList extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'No transactions added yet!',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                     height: constraints.maxHeight * 0.6,
                     child: Image.asset(
                       'assets/images/waiting.png',
@@ -51,7 +52,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   title: Text(
                     transactions[index].title,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),

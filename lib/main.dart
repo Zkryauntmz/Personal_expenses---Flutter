@@ -1,8 +1,9 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
@@ -23,12 +24,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.amber,
-          // errorColor: Colors.red,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-                title: TextStyle(
+                subtitle2: TextStyle(
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -36,14 +34,29 @@ class MyApp extends StatelessWidget {
                 button: TextStyle(color: Colors.white),
               ),
           appBarTheme: AppBarTheme(
-            textTheme: ThemeData.light().textTheme.copyWith(
-                  title: TextStyle(
+            toolbarTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                  subtitle2: TextStyle(
                     fontFamily: 'OpenSans',
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
-          )),
+                )
+                .bodyText2,
+            titleTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                  subtitle2: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+                .headline6,
+          ),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+              .copyWith(secondary: Colors.amber)),
       home: MyHomePage(),
     );
   }
@@ -53,6 +66,7 @@ class MyHomePage extends StatefulWidget {
   // String titleInput;
   // String amountInput;
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -103,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (_) {
         return GestureDetector(
           onTap: () {},
+          // ignore: sort_child_properties_last
           child: NewTransaction(_addNewTransaction),
           behavior: HitTestBehavior.opaque,
         );
@@ -146,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           );
-    final txListWidget = Container(
+    final txListWidget = SizedBox(
       height: (mediaQuery.size.height -
               appBar.preferredSize.height -
               mediaQuery.padding.top) *
@@ -165,10 +180,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Text(
                     'Show Chart',
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   Switch.adaptive(
-                    activeColor: Theme.of(context).accentColor,
+                    activeColor: Theme.of(context).colorScheme.secondary,
                     value: _showChart,
                     onChanged: (val) {
                       setState(() {
@@ -179,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             if (!isLandscape)
-              Container(
+              SizedBox(
                 height: (mediaQuery.size.height -
                         appBar.preferredSize.height -
                         mediaQuery.padding.top) *
@@ -189,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (!isLandscape) txListWidget,
             if (isLandscape)
               _showChart
-                  ? Container(
+                  ? SizedBox(
                       height: (mediaQuery.size.height -
                               appBar.preferredSize.height -
                               mediaQuery.padding.top) *
@@ -203,8 +218,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     return Platform.isIOS
         ? CupertinoPageScaffold(
-            child: pageBody,
             navigationBar: appBar,
+            child: pageBody,
           )
         : Scaffold(
             appBar: appBar,
