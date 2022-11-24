@@ -1,14 +1,17 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../widgets/adaptive_flat_button.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
 
-  // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
   NewTransaction(this.addTx);
 
   @override
-  // ignore: library_private_types_in_public_api
   _NewTransactionState createState() => _NewTransactionState();
 }
 
@@ -51,7 +54,6 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
-    // ignore: avoid_print
     print('...');
   }
 
@@ -85,7 +87,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 onSubmitted: (_) => _submitData(),
                 // onChanged: (val) => amountInput = val,
               ),
-              SizedBox(
+              Container(
                 height: 70,
                 child: Row(
                   children: <Widget>[
@@ -96,21 +98,11 @@ class _NewTransactionState extends State<NewTransaction> {
                             : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
                       ),
                     ),
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      child: Text(
-                        'Choose Date',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onPressed: _presentDatePicker,
-                    ),
+                    AdaptiveFlatButton('Choose Date', _presentDatePicker)
                   ],
                 ),
               ),
               RaisedButton(
-                // ignore: sort_child_properties_last
                 child: Text('Add Transaction'),
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,

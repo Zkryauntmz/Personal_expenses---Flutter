@@ -7,7 +7,6 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
-  // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
   TransactionList(this.transactions, this.deleteTx);
 
   @override
@@ -18,12 +17,12 @@ class TransactionList extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'No transactions added yet!',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.title,
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                SizedBox(
+                Container(
                     height: constraints.maxHeight * 0.6,
                     child: Image.asset(
                       'assets/images/waiting.png',
@@ -52,7 +51,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   title: Text(
                     transactions[index].title,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.title,
                   ),
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),
@@ -60,7 +59,7 @@ class TransactionList extends StatelessWidget {
                   trailing: MediaQuery.of(context).size.width > 460
                       ? FlatButton.icon(
                           icon: Icon(Icons.delete),
-                          label: Text('DELETE'),
+                          label: Text('Delete'),
                           textColor: Theme.of(context).errorColor,
                           onPressed: () => deleteTx(transactions[index].id),
                         )
